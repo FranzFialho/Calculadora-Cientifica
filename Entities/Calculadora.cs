@@ -1,5 +1,6 @@
 ﻿using System;
 using CalculadoraSimples;
+using System.Globalization;
 
 namespace CalculadoraSimples.Entities
 {
@@ -18,50 +19,53 @@ namespace CalculadoraSimples.Entities
             Valor2 = valor2;
         }
 
-        public double Soma()
+        public string Soma()
         {
             double soma = Valor1 + Valor2;
-            return soma;
+            return "\nResultado da soma = " + soma;
         }
 
-        public double Subtracao()
+        public string Subtracao()
         {
             double subtracao = Valor1 - Valor2;
-            return subtracao;
+            return "\nResultado da  Subtração = " + subtracao;
         }
 
-        public double Multiplicacao()
+        public string Multiplicacao()
         {
             double multiplicacao = Valor1 * Valor2;
-            return multiplicacao;
+            return "\nResultado da mutiplicação = " + multiplicacao;
         }
 
-        public double Divisao()
+        public string Divisao()
         {
+            if(Valor1 < 0 || Valor2 < 0)
+            {
+                throw new CalculadoraException("\nNão ha divisão com numero negativo...");
+            }
 
             if (Valor2 == 0)
             {
-                throw new CalculadoraException("Não ha divisão por ZERO...");
+                throw new CalculadoraException("\nNão ha divisão por ZERO...");
             }
             else
             {
                 double divisao = Valor1 / Valor2;
-                return divisao;
+                return "\nResultado da Divisão = " + divisao.ToString("F2",CultureInfo.InvariantCulture);
             }
         }
 
-        public int RaizQuadrada(int num)
+        public string RaizQuadrada(int num)
         {
 
             int raiz = (int)Math.Sqrt(num);
 
-            if(Math.Pow(raiz,2) == num)
+            if (Math.Pow(raiz, 2) == num)
             {
-                return raiz;
+                return $"\nA raiz quadrada de {num} é {raiz}";
             }
-            
+
             throw new CalculadoraException("\nO numero informado não existe raiz quadrada perfeita.");
         }
-
     }
 }

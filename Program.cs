@@ -1,9 +1,6 @@
 ﻿using CalculadoraSimples.Entities;
-
 using System;
 using System.Globalization;
-
-
 
 namespace CalculadoraSimples.Entities.Enuns
 {
@@ -11,15 +8,15 @@ namespace CalculadoraSimples.Entities.Enuns
     {
         static void Main(string[] args)
         {
-
             double n1, n2;
-            int escolha;
 
         retorna:
             try
             {
-                Console.WriteLine("\tCalculadora Simples, de contas Simples, para pessoas Simples =D");
-                Console.WriteLine("\t\t\tEscolha uma opção: \n");
+
+                Console.WriteLine("\t\t\tCalculadora Cientifica");
+
+                Console.WriteLine("\tEscolha uma opção: \n");
 
                 Console.WriteLine("1 - Somar +");
                 Console.WriteLine("2 - Subtrair -");
@@ -27,84 +24,121 @@ namespace CalculadoraSimples.Entities.Enuns
                 Console.WriteLine("4 - Dividir /");
                 Console.WriteLine("5 - Raiz Quadrada √");
                 Console.WriteLine("6 - Potência de um numero X²³");
+                Console.WriteLine("0 - Sair");
                 Console.Write("\nOPCÃO => ");
-                Enum opc = Enum.Parse<OpcoesMenu>(Console.ReadLine());
-                //Descobrir uma forma do programa não reconhecer numeros alem dos definidos na classe Enum.
-                if ( )
+                object opc = int.Parse(Console.ReadLine());
+                
+    
+                if (Enum.IsDefined(typeof(OpcoesMenu), opc) == false) 
                 {
-
+                    Console.WriteLine("\nSomente Opções validas!!!");
+                    Console.ReadKey();
+                    Console.Clear();
+                    goto retorna;                    
+                }
+                if((int)opc  == 0)
+                {
+                    Console.WriteLine("\nSaindo...");
+                    Environment.Exit(1);
                 }
 
-                Console.WriteLine("\n\t##### " + opc + " #####");
-
-                Console.Write("\nPrimeiro Valor: ");
-                n1 = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-                Console.Write("Segundo Valor: ");
-                n2 = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+               
 
                 switch (opc)
                 {
 
-                    case OpcoesMenu.Somar:
+                    case 1:
 
-                        Calculadora calc = new Calculadora(n1, n2);
+                        Console.WriteLine("\n\t##### " + OpcoesMenu.Somar + " #####");
 
-                        Console.WriteLine("\nResultado da Soma = " + calc.Soma(), CultureInfo.InvariantCulture);
+                        Console.Write("\nPrimeiro Valor: ");
+                        n1 = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                        Console.Write("Segundo Valor: ");
+                        n2 = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+                        var calc = new Calculadora(n1, n2);
+                        Console.WriteLine(calc.Soma());
+
                         break;
 
-                    case OpcoesMenu.Subtrair:
+                    case 2:
 
-                        Calculadora subtr = new Calculadora(n1, n2);
+                        Console.WriteLine("\n\t##### " + OpcoesMenu.Subtrair + " #####");
 
-                        Console.WriteLine("\nResultado da ubtração = " + subtr.Subtracao(), CultureInfo.InvariantCulture);
+                        Console.Write("\nPrimeiro Valor: ");
+                        n1 = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                        Console.Write("Segundo Valor: ");
+                        n2 = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+                        var subtr = new Calculadora(n1, n2);
+                        Console.WriteLine(subtr.Subtracao());
+
                         break;
 
-                    case OpcoesMenu.Multiplicar:
+                    case 3:
 
-                        Calculadora multi = new Calculadora(n1, n2);
+                        Console.WriteLine("\n\t##### " + OpcoesMenu.Multiplicar + " #####");
 
-                        Console.WriteLine("\nResultado da Multiplicação = " + multi.Multiplicacao(), CultureInfo.InvariantCulture);
+                        Console.Write("\nPrimeiro Valor: ");
+                        n1 = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                        Console.Write("Segundo Valor: ");
+                        n2 = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+                        var multi = new Calculadora(n1, n2);
+                        Console.WriteLine(multi.Multiplicacao());
+
                         break;
 
 
-                    case OpcoesMenu.Dividir:
+                    case 4:
 
-                        Calculadora divisao = new Calculadora(n1, n2);
-                        double div = divisao.Divisao();
+                        Console.WriteLine("\n\t##### " + OpcoesMenu.Dividir + " #####");
 
-                        Console.WriteLine("\nResultado da Divisão = " + div.ToString("F2", CultureInfo.InvariantCulture));
+                        Console.Write("\nPrimeiro Valor: ");
+                        n1 = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                        Console.Write("Segundo Valor: ");
+                        n2 = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+                        var divisao = new Calculadora(n1, n2);
+                        Console.WriteLine(divisao.Divisao());
+
                         break;
 
 
-                    case OpcoesMenu.RaizQuadrada:
+                    case 5:
 
+                        Console.WriteLine("\n\t##### " + OpcoesMenu.Raiz_Quadrada + " #####");
 
                         Console.Write("Qual numero deseja ver sua raiz quadrada: ");
                         int num = int.Parse(Console.ReadLine());
 
-                        Calculadora raiz = new Calculadora();
+                        var raiz = new Calculadora();
+                        Console.WriteLine(raiz.RaizQuadrada(num));
 
-                        Console.WriteLine($"\nA raiz quadrada de {num} é: " + raiz.RaizQuadrada(num));
+                        break;
+
+                    case 6:
+
+                        Console.WriteLine("\n\t##### " + OpcoesMenu.Potencia + " #####");
 
                         break;
                 }
-
             }
-            catch (FormatException)
+            catch (FormatException) // Exception caso informe valores invalidos.
             {
                 Console.WriteLine("\nERROR!!!\nPor favor, somente numeros validos.");
                 Console.ReadKey();
                 Console.Clear();
                 goto retorna;
             }
-            catch (CalculadoraException e)
+            catch (CalculadoraException e)// Exception das operações
             {
                 Console.WriteLine(e.Message);
                 Console.ReadKey();
                 Console.Clear();
                 goto retorna;
             }
-            catch (ArgumentException)
+            catch (ArgumentNullException)//Exception do ENUM
             {
                 Console.WriteLine("\nERROR!!!\nPor favor, somente opcoes numerais.");
                 Console.ReadKey();
@@ -117,7 +151,7 @@ namespace CalculadoraSimples.Entities.Enuns
             {
                 Console.WriteLine("================================================");
                 Console.WriteLine("\n1 - Deseja Continuar.\n2 - Deseja Sair.");
-                escolha = int.Parse(Console.ReadLine());
+                int escolha = int.Parse(Console.ReadLine());
                 if (escolha == 1)
                 {
                     Console.Clear();
@@ -125,16 +159,16 @@ namespace CalculadoraSimples.Entities.Enuns
                 }
                 else if (escolha == 2)
                 {
+                    Console.WriteLine("Saindo...");
                     Environment.Exit(1);
                 }
                 else
                 {
                     Console.Clear();
                     goto opcao;
-
                 }
-
             }
+
             catch (FormatException)
             {
                 Console.WriteLine("Escolha uma opção valida!!!");
@@ -142,13 +176,18 @@ namespace CalculadoraSimples.Entities.Enuns
                 Console.Clear();
                 goto opcao;
             }
-
-
-
         }
-
     }
 }
+
+
+
+
+
+
+
+
+
 
 
 

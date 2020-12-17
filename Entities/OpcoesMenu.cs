@@ -4,14 +4,15 @@ using System.Text;
 
 namespace CalculadoraSimples.Entities
 {
-    enum OpcoesMenu : int
+    public enum OpcoesMenu : int
     {
+
+        SAIR = 0,
         Somar = 1,
         Subtrair = 2,
         Multiplicar = 3,
         Dividir = 4,
-        RaizQuadrada = 5,
-        Potencia = 6
-        
-    }
+        Raiz_Quadrada = 5,
+        Potencia = 6,     
+    };
 }
