@@ -8,16 +8,20 @@ namespace CalculadoraSimples.Entities
     {
         public double Valor1 { get; set; }
         public double Valor2 { get; set; }
-
+    
         public Calculadora()
         {
         }
 
         public Calculadora(double valor1, double valor2)
         {
+           
             Valor1 = valor1;
             Valor2 = valor2;
+
+            throw new FormatException ("\nSomente valore numerais !!!");
         }
+
 
         public string Soma()
         {
@@ -39,7 +43,7 @@ namespace CalculadoraSimples.Entities
 
         public string Divisao()
         {
-            if(Valor1 < 0 || Valor2 < 0)
+            if (Valor1 < 0 || Valor2 < 0)
             {
                 throw new CalculadoraException("\nNão ha divisão com numero negativo...");
             }
@@ -51,7 +55,7 @@ namespace CalculadoraSimples.Entities
             else
             {
                 double divisao = Valor1 / Valor2;
-                return "\nResultado da Divisão = " + divisao.ToString("F2",CultureInfo.InvariantCulture);
+                return "\nResultado da Divisão = " + divisao.ToString("F2", CultureInfo.InvariantCulture);
             }
         }
 
@@ -67,5 +71,16 @@ namespace CalculadoraSimples.Entities
 
             throw new CalculadoraException("\nO numero informado não existe raiz quadrada perfeita.");
         }
+
+        public string Potencia(int num,int expoente)
+        {
+            
+            int resul = (int)Math.Pow(num, expoente);
+
+            return $"\nO Valor de sua potência é = {resul}";
+
+        }
+
+        
     }
 }

@@ -8,9 +8,11 @@ namespace CalculadoraSimples.Entities.Enuns
     {
         static void Main(string[] args)
         {
+            Calculadora calculadora = new Calculadora();
             double n1, n2;
 
         retorna:
+
             try
             {
 
@@ -24,28 +26,27 @@ namespace CalculadoraSimples.Entities.Enuns
                 Console.WriteLine("4 - Dividir /");
                 Console.WriteLine("5 - Raiz Quadrada √");
                 Console.WriteLine("6 - Potência de um numero X²³");
+                Console.WriteLine("7 - Valor de Delta, x'e x");
                 Console.WriteLine("0 - Sair");
                 Console.Write("\nOPCÃO => ");
-                object opc = int.Parse(Console.ReadLine());
-                
-    
-                if (Enum.IsDefined(typeof(OpcoesMenu), opc) == false) 
+                int opc = int.Parse(Console.ReadLine());
+
+                if (Enum.IsDefined(typeof(OpcoesMenu), opc) == false) //Verifica se a variavel opc recebeu valores que correspodem a classe ENUM.
                 {
                     Console.WriteLine("\nSomente Opções validas!!!");
                     Console.ReadKey();
                     Console.Clear();
-                    goto retorna;                    
+                    goto retorna;
                 }
-                if((int)opc  == 0)
-                {
-                    Console.WriteLine("\nSaindo...");
-                    Environment.Exit(1);
-                }
-
-               
 
                 switch (opc)
                 {
+                    case 0:
+
+                        Console.WriteLine("\nSaindo...");
+
+                        Environment.Exit(1);
+                        break;
 
                     case 1:
 
@@ -89,7 +90,6 @@ namespace CalculadoraSimples.Entities.Enuns
 
                         break;
 
-
                     case 4:
 
                         Console.WriteLine("\n\t##### " + OpcoesMenu.Dividir + " #####");
@@ -109,7 +109,7 @@ namespace CalculadoraSimples.Entities.Enuns
 
                         Console.WriteLine("\n\t##### " + OpcoesMenu.Raiz_Quadrada + " #####");
 
-                        Console.Write("Qual numero deseja ver sua raiz quadrada: ");
+                        Console.Write("\nQual numero deseja ver sua raiz quadrada: ");
                         int num = int.Parse(Console.ReadLine());
 
                         var raiz = new Calculadora();
@@ -120,11 +120,21 @@ namespace CalculadoraSimples.Entities.Enuns
                     case 6:
 
                         Console.WriteLine("\n\t##### " + OpcoesMenu.Potencia + " #####");
+                        Console.WriteLine("\nDigite um numero e um exponte para descobrir sua potência. ");
+                        Console.Write("Numero => ");
+                        int Valor = int.Parse(Console.ReadLine());
+                        Console.Write("Potencia => ");
+                        int Expoente = int.Parse(Console.ReadLine());
+
+                        var potencia = new Calculadora();
+                        Console.WriteLine(potencia.Potencia(Valor, Expoente));
 
                         break;
+
                 }
             }
-            catch (FormatException) // Exception caso informe valores invalidos.
+
+            catch (FormatException) // Exception caso informe valores invalidos nas operações.
             {
                 Console.WriteLine("\nERROR!!!\nPor favor, somente numeros validos.");
                 Console.ReadKey();
@@ -151,7 +161,9 @@ namespace CalculadoraSimples.Entities.Enuns
             {
                 Console.WriteLine("================================================");
                 Console.WriteLine("\n1 - Deseja Continuar.\n2 - Deseja Sair.");
+                Console.Write("OPÇÂO => ");
                 int escolha = int.Parse(Console.ReadLine());
+
                 if (escolha == 1)
                 {
                     Console.Clear();
@@ -176,6 +188,7 @@ namespace CalculadoraSimples.Entities.Enuns
                 Console.Clear();
                 goto opcao;
             }
+
         }
     }
 }
