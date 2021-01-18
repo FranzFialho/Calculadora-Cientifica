@@ -23,9 +23,9 @@ namespace CalculadoraSimples.Entities
 
         public void Soma()
         {
-            
+
             double soma = Valor1 + Valor2;
-           Console.WriteLine("\nResultado da soma = " + soma);
+            Console.WriteLine("\nResultado da soma = " + soma);
         }
 
         public void Subtracao()
@@ -42,10 +42,6 @@ namespace CalculadoraSimples.Entities
 
         public void Divisao()
         {
-            if (Valor1 < 0 || Valor2 < 0)
-            {
-                throw new CalculadoraException("\nNão ha divisão com numero negativo...");
-            }
 
             if (Valor2 == 0)
             {
@@ -83,25 +79,44 @@ namespace CalculadoraSimples.Entities
         public void Delta(int a, int b, int c)
         {
             double delta = (Math.Pow(b, 2)) - 4 * a * c;
+            double div = 2 * a;
+            double RaizDelta = Math.Sqrt(delta);
+            double X1 = (-b - RaizDelta) / div;
+            double X2 = (-b + RaizDelta) / div;
 
             Console.WriteLine("\nDELTA = B² - 4.a.b");
+
             if (-4 * a * c > 0)
             {
                 Console.WriteLine($"DELTA = {b}² - 4 . {a} . {c}" +
                          "\nDELTA = " + Math.Pow(b, 2) + " + " + -4 * a * c +
                           "\nDELTA = " + delta);
+
+                if (delta < 0)
+                {
+                    Console.WriteLine("\nDELTA menor que zero, não há raízes reais...");
+                }
+                else
+                {
+                    Console.WriteLine($"\nX¹ = {X1}\nX² = {X2}");
+                }
             }
 
-            if (-4 * a * c < 0)
+            else if (-4 * a * c < 0)
             {
                 Console.WriteLine($"\nDELTA = {b}² - 4 . {a} . {c}" +
                          "\nDELTA = " + Math.Pow(b, 2) + "" + -4 * a * c +
                           "\nDELTA = " + delta);
-            }
+               
+                if (delta < 0)
+                {
+                    Console.WriteLine("\nDELTA menor que zero, não há raízes reais...");
+                }
+                else
+                {
+                    Console.WriteLine($"\nX¹ = {X1}\nX² = {X2}");
+                }
 
-            if (delta < 0)
-            {
-                Console.WriteLine("DELTA < 0, Não há reais... ");
             }
 
         }

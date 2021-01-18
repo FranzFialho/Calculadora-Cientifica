@@ -15,9 +15,9 @@ namespace CalculadoraSimples.Entities.Enuns
         retorna:
             try
             {
-                Console.WriteLine("\t\t----------------------");
-                Console.WriteLine("\t\tCalculadora Cientifica");
-                Console.WriteLine("\t\t----------------------");
+                Console.WriteLine("\t\t------------------------");
+                Console.WriteLine("\t\t-Calculadora Cientifica-");
+                Console.WriteLine("\t\t------------------------");
 
                 Console.WriteLine("Escolha uma opção: \n");
 
@@ -27,7 +27,7 @@ namespace CalculadoraSimples.Entities.Enuns
                 Console.WriteLine("4 - Dividir /");
                 Console.WriteLine("5 - Raiz Quadrada √");
                 Console.WriteLine("6 - Potência de um numero X²³");
-                Console.WriteLine("7 - Valor de Delta, x'e x");
+                Console.WriteLine("7 - Valor de Delta, x¹ e x² ");
                 Console.WriteLine("\n0 - Sair");
                 Console.Write("\nOPCÃO => ");
                 int opc = int.Parse(Console.ReadLine());
@@ -177,9 +177,6 @@ namespace CalculadoraSimples.Entities.Enuns
                 Console.Clear();
                 goto retorna;
             }
-
-            
-
         }
     }
 }
