@@ -8,40 +8,39 @@ namespace CalculadoraSimples.Entities
     {
         public double Valor1 { get; set; }
         public double Valor2 { get; set; }
-    
+
         public Calculadora()
         {
         }
 
         public Calculadora(double valor1, double valor2)
         {
-           
+
             Valor1 = valor1;
             Valor2 = valor2;
 
-            throw new FormatException ("\nSomente valore numerais !!!");
         }
 
-
-        public string Soma()
+        public void Soma()
         {
+            
             double soma = Valor1 + Valor2;
-            return "\nResultado da soma = " + soma;
+           Console.WriteLine("\nResultado da soma = " + soma);
         }
 
-        public string Subtracao()
+        public void Subtracao()
         {
             double subtracao = Valor1 - Valor2;
-            return "\nResultado da  Subtração = " + subtracao;
+            Console.WriteLine("\nResultado da  Subtração = " + subtracao);
         }
 
-        public string Multiplicacao()
+        public void Multiplicacao()
         {
             double multiplicacao = Valor1 * Valor2;
-            return "\nResultado da mutiplicação = " + multiplicacao;
+            Console.WriteLine("\nResultado da mutiplicação = " + multiplicacao);
         }
 
-        public string Divisao()
+        public void Divisao()
         {
             if (Valor1 < 0 || Valor2 < 0)
             {
@@ -55,32 +54,58 @@ namespace CalculadoraSimples.Entities
             else
             {
                 double divisao = Valor1 / Valor2;
-                return "\nResultado da Divisão = " + divisao.ToString("F2", CultureInfo.InvariantCulture);
+                Console.WriteLine("\nResultado da Divisão = " + divisao.ToString("F2", CultureInfo.InvariantCulture));
             }
         }
 
-        public string RaizQuadrada(int num)
+        public void RaizQuadrada(int num)
         {
 
             int raiz = (int)Math.Sqrt(num);
 
             if (Math.Pow(raiz, 2) == num)
             {
-                return $"\nA raiz quadrada de {num} é {raiz}";
+                Console.WriteLine($"\nA raiz quadrada de {num} é {raiz}");
             }
 
             throw new CalculadoraException("\nO numero informado não existe raiz quadrada perfeita.");
         }
 
-        public string Potencia(int num,int expoente)
+        public void Potencia(int num, int expoente)
         {
-            
+
             int resul = (int)Math.Pow(num, expoente);
 
-            return $"\nO Valor de sua potência é = {resul}";
+            Console.WriteLine($"\nO Valor de sua potência é = {resul}");
 
         }
 
-        
+        public void Delta(int a, int b, int c)
+        {
+            double delta = (Math.Pow(b, 2)) - 4 * a * c;
+
+            Console.WriteLine("\nDELTA = B² - 4.a.b");
+            if (-4 * a * c > 0)
+            {
+                Console.WriteLine($"DELTA = {b}² - 4 . {a} . {c}" +
+                         "\nDELTA = " + Math.Pow(b, 2) + " + " + -4 * a * c +
+                          "\nDELTA = " + delta);
+            }
+
+            if (-4 * a * c < 0)
+            {
+                Console.WriteLine($"\nDELTA = {b}² - 4 . {a} . {c}" +
+                         "\nDELTA = " + Math.Pow(b, 2) + "" + -4 * a * c +
+                          "\nDELTA = " + delta);
+            }
+
+            if (delta < 0)
+            {
+                Console.WriteLine("DELTA < 0, Não há reais... ");
+            }
+
+        }
     }
 }
+
+
