@@ -1,7 +1,6 @@
-﻿using CalculadoraSimples.Entities;
-using System;
+﻿using System;
 using System.Globalization;
-using System.Collections.Generic;
+
 
 namespace CalculadoraSimples.Entities.Enuns
 {
@@ -12,7 +11,7 @@ namespace CalculadoraSimples.Entities.Enuns
             Calculadora calculadora = new Calculadora();
             double n1, n2;
 
-        retorna:
+            retorna:
             try
             {
                 Console.WriteLine("\t\t------------------------");
@@ -32,7 +31,7 @@ namespace CalculadoraSimples.Entities.Enuns
                 Console.Write("\nOPCÃO => ");
                 int opc = int.Parse(Console.ReadLine());
 
-                if (Enum.IsDefined(typeof(OpcoesMenu), opc) == false) //Verifica se a variavel opc recebeu valores que correspodem a classe ENUM.
+                if (Enum.IsDefined(typeof(OpcoesMenu), opc) == false)
                 {
                     Console.WriteLine("\nSomente Opções validas!!!");
                     Console.ReadKey();
@@ -149,20 +148,23 @@ namespace CalculadoraSimples.Entities.Enuns
                         break;
                 }
 
-                Console.WriteLine("\nVoltar ao menu principal pressione ESC.\nPara Sair pressione N.");
+                Console.WriteLine("\nVoltar ao menu principal pressione ESC.");
                 if (Console.ReadKey().Key == ConsoleKey.Escape)
                 {
                     Console.Clear();
                     goto retorna;
                 }
-                if (Console.ReadKey().Key == ConsoleKey.N)
+
+                else
                 {
-                    Console.WriteLine("Saindo....");
-                    Environment.Exit(1);
+                    Console.WriteLine("\nTecla errada!\nPressione qualquer tecla para voltar.");
+                    Console.ReadKey();
+                    Console.Clear();
+                    goto retorna;
                 }
             }
 
-            catch (FormatException) // Exception caso informe valores invalidos nas operações.
+            catch (FormatException)
             {
                 Console.WriteLine("\nERROR!!!\nPor favor, somente valores numericos.");
                 Console.ReadKey();
@@ -170,7 +172,7 @@ namespace CalculadoraSimples.Entities.Enuns
                 goto retorna;
             }
 
-            catch (CalculadoraException e)// Exception das operações
+            catch (CalculadoraException e)
             {
                 Console.WriteLine(e.Message);
                 Console.ReadKey();

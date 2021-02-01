@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace CalculadoraSimples.Entities
 {
     class CalculadoraException : ArithmeticException

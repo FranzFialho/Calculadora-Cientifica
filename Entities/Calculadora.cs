@@ -1,5 +1,4 @@
 ﻿using System;
-using CalculadoraSimples;
 using System.Globalization;
 
 namespace CalculadoraSimples.Entities
@@ -50,7 +49,7 @@ namespace CalculadoraSimples.Entities
             else
             {
                 double divisao = Valor1 / Valor2;
-                Console.WriteLine("\nResultado da Divisão = " + divisao.ToString("F2", CultureInfo.InvariantCulture));
+                Console.WriteLine("\nResultado da Divisão = " + divisao,CultureInfo.InvariantCulture);
             }
         }
 
@@ -81,7 +80,7 @@ namespace CalculadoraSimples.Entities
             double delta = (Math.Pow(b, 2)) - 4 * a * c;
             double div = 2 * a;
             double RaizDelta = Math.Sqrt(delta);
-            double X1 = (-b - RaizDelta) / div;
+            double X1 = ((-b) - RaizDelta) / div;
             double X2 = (-b + RaizDelta) / div;
 
             Console.WriteLine("\nDELTA = B² - 4.a.b");
@@ -98,7 +97,7 @@ namespace CalculadoraSimples.Entities
                 }
                 else
                 {
-                    Console.WriteLine($"\nX¹ = {X1}\nX² = {X2}");
+                    Console.WriteLine($"\nX¹- = {X1}\nX²+ = {X2}");
                 }
             }
 
